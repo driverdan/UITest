@@ -1,16 +1,16 @@
 var UITest = new function() {
-    var _testFrame = parent.frames.main;
-    var _ajax_mocks = [];
-    var _testScripts = [];
-    var _activeTest = null;
-    var _passed = 0;
-    var _total = 0;
+    var _testFrame = parent.frames.main,
+        _ajax_mocks = [],
+        _testScripts = [],
+        _activeTest = null,
+        _passed = 0,
+        _total = 0,
     
-    // query string configurations
-    var _runAll = parent.location.search.indexOf('all') !== -1;
-    var _slowMode = parent.location.search.indexOf('slow') !== -1;
-    var _noTests = top.location.search.indexOf('notests') !== -1;
-    var _startIndex = parseInt(parent.location.search.substr(1), 10);
+        // query string configurations
+        _runAll = parent.location.search.indexOf('all') !== -1,
+        _slowMode = parent.location.search.indexOf('slow') !== -1,
+        _noTests = top.location.search.indexOf('notests') !== -1,
+        _startIndex = parseInt(parent.location.search.substr(1), 10);
 
 
     // Debug log and listing
@@ -33,8 +33,9 @@ var UITest = new function() {
 
 
     function writeList() {
-        var list = document.getElementById('listtests');
-        var html = '<table>'
+        var list = document.getElementById('listtests'),
+            html = '<table>';
+        
         html += '<thead><tr><th colspan="3"><a href="index.html" target="_parent">List of tests</a></th></tr></thead>';
         html += '<tbody>';
         for (var i = 0; i < _testScripts.length; i++) {
@@ -117,8 +118,8 @@ var UITest = new function() {
     
     
     function updateProgress() {
-        var perc = Math.round(_passed / _total * 100);
-        var s = 'Passed ' + perc + '% [';
+        var perc = Math.round(_passed / _total * 100),
+            s = 'Passed ' + perc + '% [';
         for (var i = 5; i <= 100; i += 5) {
             s += (i <= perc) ? '|' : '.';
         }
@@ -302,8 +303,8 @@ var UITest = new function() {
                 }];
             }
 
-            var tests = testScript.tests;
-            var wrappers = [];
+            var tests = testScript.tests,
+                wrappers = [];
             for (var i = tests.length - 1; i >= 0; i--) {
                 _total++;
                 wrappers[i] = function(index, selector, success) {
